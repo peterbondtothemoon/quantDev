@@ -3,7 +3,7 @@ conn = sqlite3.connect('crypto.db')
 c = conn.cursor()
 
 
-# deleteTableSql = "drop table coins if exists coins "
+# deleteTableSql = "drop table if exists coins "
 # c.execute(deleteTableSql)
 
 c.execute("""
@@ -18,7 +18,7 @@ CREATE TABLE "coins" (
 
 
 
-# dropTableSql = "drop table klines  if exists  klines "
+# dropTableSql = "drop table  if exists  klines "
 # c.execute(dropTableSql)
 #
 # c.execute("""
@@ -34,7 +34,7 @@ CREATE TABLE "coins" (
 #     )
 # """)
 
-# deleteTableSql = "drop table results  if exists  results "
+# deleteTableSql = "drop table  if exists  results "
 # c.execute(deleteTableSql)
 
 # c.execute("""
@@ -47,7 +47,7 @@ CREATE TABLE "coins" (
 # )
 # """)
 
-# dropTableSql = "drop table buysell  if exists buysell "
+# dropTableSql = "drop table  if exists buysell "
 # c.execute(dropTableSql)
 # c.execute("""
 #     CREATE TABLE "buysell" (
@@ -62,7 +62,7 @@ CREATE TABLE "coins" (
 #     )
 # """)
 
-dropTableSql = "drop table statistics  if exists  statistics "
+dropTableSql = "drop table   if exists  statistics "
 c.execute(dropTableSql)
 c.execute("""
     CREATE TABLE "statistics" (
