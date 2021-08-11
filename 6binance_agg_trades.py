@@ -80,7 +80,7 @@ def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyy
 # 每天更新最新数据的sql
 query_sql1 = " select tradingPair,startDate from coins order by id "
 process_date_yyyymmdd1 = get_yesterday_yyyymmdd()
-end_date_yyyymmdd1 = get_previous_date(process_date_yyyymmdd1, 2)
+end_date_yyyymmdd1 = get_previous_date(process_date_yyyymmdd1, 1)
 tradingPairs1 = get_trading_pairs_date(query_sql1)
 get_history_trading_data(tradingPairs1, process_date_yyyymmdd1, end_date_yyyymmdd1)
 
@@ -88,7 +88,7 @@ get_history_trading_data(tradingPairs1, process_date_yyyymmdd1, end_date_yyyymmd
 # 往前追溯交易明细，LUNAUSDT的数据已经追溯到2020年11月2日，暂时不用再更新了
 # query_sql2 = " select tradingPair,startDate from coins  where tradingPair <> 'LUNAUSDT'  "
 # process_date_yyyymmdd2 = get_next_process_date()
-# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 10)   # 往前追溯10天的数据
+# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 5)   # 往前追溯10天的数据
 # tradingPairs2 = get_trading_pairs_date(query_sql2)
 # get_history_trading_data(tradingPairs2, process_date_yyyymmdd2, end_date_yyyymmdd2)
 
