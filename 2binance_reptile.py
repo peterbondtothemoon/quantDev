@@ -10,11 +10,11 @@ pd.set_option('expand_frame_repr', False)
 conn = sqlite3.connect('crypto.db')
 # 获取交易所过去n天的XXXUSDT数据.
 BASE_URL = 'https://api.binance.com'
-HOW_MANY_DAYS = 22
+HOW_MANY_DAYS = 1
 final_message = []
 
-# first_starttime_yyyymmdd = datetime.strftime((datetime.now() - timedelta(1)), '%Y-%m-%d')
-first_starttime_yyyymmdd = "2021-08-08"
+first_starttime_yyyymmdd = datetime.strftime((datetime.now() - timedelta(1)), '%Y-%m-%d')
+# first_starttime_yyyymmdd = "2021-08-08"
 first_start_str = first_starttime_yyyymmdd+" 00:00"
 first_end_str = first_starttime_yyyymmdd+" 23:59"
 last_endtime_yyyymmdd = get_previous_date(first_starttime_yyyymmdd, HOW_MANY_DAYS)
