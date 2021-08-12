@@ -1,0 +1,4 @@
+trading_pair,trade_date,price,volume
+btc,2021-08-10,10,100
+btc,2021-08-11,11,50
+btc,2021-08-12,12,20
