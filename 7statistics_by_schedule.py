@@ -65,7 +65,7 @@ def statistics_days_between2(begin_date_yyyymmdd, end_date_yyyymmdd, trading_pai
     mycursor.close()
 
 
-# statistics_in_a_month()
-# statistics_in_a_week()
-statistics_days_between2("2021-07-12", "2021-07-14", "LUNAUSDT")
+statistics_in_a_month()
+statistics_in_a_week()
+# statistics_days_between2("2021-06-09", "2021-09-09", "CTKUSDT")
 conn.close()

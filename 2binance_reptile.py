@@ -34,11 +34,8 @@ for each_trading_pair in tradingPairs:
         count = count+1
         one_record = []
         current_date = datetime.strftime(datetime.fromtimestamp(start_time/1000), '%Y-%m-%d')
-        print('current_date=', current_date)
         start_time = int(start_time - 24 * 60 * 60 * 1000)
-        # print('start_time=', start_time)
         end_time = int(end_time - 24 * 60 * 60 * 1000)
-        # print('each_trading_pair=', each_trading_pair, '&current_date=', current_date)
         url = BASE_URL + '/api/v3/klines' + '?symbol='+each_trading_pair+'&interval=1d&limit=1&startTime=' + str(
             start_time) + '&endTime=' + str(end_time)
         # print('url=', url)

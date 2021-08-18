@@ -101,14 +101,14 @@ golden_breakup30 = get_golden_breakup(slow_ma_window30)
 golden_breakup100 = get_golden_breakup(slow_ma_window100)
 
 if len(golden_breakup30) == 0:
-    print("no golden_breakup30")
+    print("no golden_breakup30 in ", trading_day_yyyymmdd)
 else:
     print("\ngolden_breakup_ma30 in ", trading_day_yyyymmdd)
     for msg in golden_breakup30:
         print(msg)
 
 if len(golden_breakup100) == 0:
-    print("\nno golden_breakup100")
+    print("\nno golden_breakup100 in ", trading_day_yyyymmdd)
 else:
     print("\ngolden_breakup100 in ", trading_day_yyyymmdd)
     for msg in golden_breakup100:

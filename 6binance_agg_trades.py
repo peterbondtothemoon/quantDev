@@ -23,7 +23,7 @@ def get_next_process_date():
     rows = mycursor.fetchall()
     for row in rows:
         result_date = row[0][:10]
-        print("result_date=", result_date, len(result_date))
+        print("btcusdt目前已经更新的日期=", result_date, len(result_date))
     mycursor.close()
     if len(result_date) == 10:
         result_date = get_previous_date(result_date, 1)
@@ -45,10 +45,6 @@ def get_trading_pairs_date(query_sql):
 # end_date_yyyymmdd：结束更新数据的日期（比开始更新数据的日期更古老）
 def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyymmdd):
     while True:
-        # process_date_yyyymmdd = init_process_date_yyyymmdd   # 这个数值，每个交易对都要重新赋值一次
-
-        # 再加一轮while循环：从昨天开始，一直往前到开始上交易所的日期
-        # while True:
         for name_date in trading_pairs:  # for每个交易对
             temp_array = str(name_date).split("#")
             trading_pair_name = temp_array[0]
@@ -65,7 +61,7 @@ def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyy
                 url = BASE_URL + 'symbol='+trading_pair_name
                 url += '&startTime=' + start_timestamp
                 url += '&endTime=' + str(end_timestamp)
-                # print('index_24h=', index_24h, 'url=============>', url)
+                print('index_24h=', index_24h, 'url=============>', url)
 
                 resp = requests.get(url)
                 data = resp.json()
@@ -80,7 +76,7 @@ def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyy
 # 每天更新最新数据的sql
 query_sql1 = " select tradingPair,startDate from coins order by id "
 process_date_yyyymmdd1 = get_yesterday_yyyymmdd()
-end_date_yyyymmdd1 = get_previous_date(process_date_yyyymmdd1, 1)
+end_date_yyyymmdd1 = process_date_yyyymmdd1     # get_previous_date(process_date_yyyymmdd1, 1)
 tradingPairs1 = get_trading_pairs_date(query_sql1)
 get_history_trading_data(tradingPairs1, process_date_yyyymmdd1, end_date_yyyymmdd1)
 
@@ -88,7 +84,7 @@ get_history_trading_data(tradingPairs1, process_date_yyyymmdd1, end_date_yyyymmd
 # 往前追溯交易明细，LUNAUSDT的数据已经追溯到2020年11月2日，暂时不用再更新了
 # query_sql2 = " select tradingPair,startDate from coins  where tradingPair <> 'LUNAUSDT'  "
 # process_date_yyyymmdd2 = get_next_process_date()
-# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 5)   # 往前追溯10天的数据
+# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 1)   # 往前追溯n天的数据,3-3
 # tradingPairs2 = get_trading_pairs_date(query_sql2)
 # get_history_trading_data(tradingPairs2, process_date_yyyymmdd2, end_date_yyyymmdd2)
 
