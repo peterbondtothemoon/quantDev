@@ -61,7 +61,7 @@ def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyy
                 url = BASE_URL + 'symbol='+trading_pair_name
                 url += '&startTime=' + start_timestamp
                 url += '&endTime=' + str(end_timestamp)
-                print('index_24h=', index_24h, 'url=============>', url)
+                # print('index_24h=', index_24h, 'url=============>', url)
 
                 resp = requests.get(url)
                 data = resp.json()
@@ -74,24 +74,23 @@ def get_history_trading_data(trading_pairs, process_date_yyyymmdd, end_date_yyyy
 
 
 # 每天更新最新数据的sql
-query_sql1 = " select tradingPair,startDate from coins order by id "
+query_sql = " select tradingPair,startDate from coins order by id "
 process_date_yyyymmdd1 = get_yesterday_yyyymmdd()
 end_date_yyyymmdd1 = process_date_yyyymmdd1     # get_previous_date(process_date_yyyymmdd1, 1)
-tradingPairs1 = get_trading_pairs_date(query_sql1)
+tradingPairs1 = get_trading_pairs_date(query_sql)
 get_history_trading_data(tradingPairs1, process_date_yyyymmdd1, end_date_yyyymmdd1)
 
 
-# 往前追溯交易明细，LUNAUSDT的数据已经追溯到2020年11月2日，暂时不用再更新了
-# query_sql2 = " select tradingPair,startDate from coins  where tradingPair <> 'LUNAUSDT'  "
+# 往前追溯交易明细
 # process_date_yyyymmdd2 = get_next_process_date()
-# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 1)   # 往前追溯n天的数据,3-3
-# tradingPairs2 = get_trading_pairs_date(query_sql2)
+# end_date_yyyymmdd2 = get_previous_date(process_date_yyyymmdd2, 5)   # 往前追溯n天的数据
+# tradingPairs2 = get_trading_pairs_date(query_sql)
 # get_history_trading_data(tradingPairs2, process_date_yyyymmdd2, end_date_yyyymmdd2)
 
 
 
 conn.close()
 if len(final_message) == 0:
-    print('Success! I have fetched the data for today.')
+    print('Success! I have fetched the data.')
 else:
     print('final_message', final_message)

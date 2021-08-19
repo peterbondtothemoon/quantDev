@@ -94,8 +94,8 @@ c.execute("""
     )
 """)
 
-dropTableSql = "drop table   if exists  statistics "
-c.execute(dropTableSql)
+# dropTableSql = "drop table   if exists  statistics "
+# c.execute(dropTableSql)
 # c.execute("""
 #     CREATE TABLE "statistics" (
 #     "id" INTEGER primary key autoincrement,

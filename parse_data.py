@@ -84,15 +84,15 @@ def parse_data(conn, json_data, trading_pair_name, trading_date_time):
                 sell_small_volume += volume
 
     # 最后，一个小时内的所有交易记录汇总成为一条记录
-    one_record = [trading_pair_name, trading_date_time, buy_amount, buy_volume,
-                  sell_amount, sell_volume, total_amount, total_volume]
+    one_record = [trading_pair_name, trading_date_time, round(buy_amount, 2), round(buy_volume, 2),
+                  round(sell_amount, 2), round(sell_volume, 2), round(total_amount, 2), round(total_volume, 2)]
     many_records.append(one_record)
 
-    one_record_bigdeal = [trading_pair_name, trading_date_time, buy_small_amount, buy_small_volume,
-                          buy_middle_amount, buy_middle_volume, buy_big_amount, buy_big_volume,
-                          buy_super_big_amount, buy_super_big_volume, sell_small_amount, sell_small_volume,
-                          sell_middle_amount, sell_middle_volume, sell_big_amount, sell_big_volume,
-                          sell_super_big_amount, sell_super_big_volume, total_amount, total_volume]
+    one_record_bigdeal = [trading_pair_name, trading_date_time, round(buy_small_amount, 2), round(buy_small_volume, 2),
+                          round(buy_middle_amount, 2), round(buy_middle_volume, 2), round(buy_big_amount, 2), round(buy_big_volume, 2),
+                          round(buy_super_big_amount, 2), round(buy_super_big_volume, 2), round(sell_small_amount, 2), round(sell_small_volume, 2),
+                          round(sell_middle_amount, 2), round(sell_middle_volume, 2), round(sell_big_amount, 2), round(sell_big_volume, 2),
+                          round(sell_super_big_amount, 2), round(sell_super_big_volume, 2), round(total_amount, 2), round(total_volume, 2)]
     many_records_bigdeal.append(one_record_bigdeal)
 
     delete_sql = " delete from buysell where tradingPair = '" + trading_pair_name + "'"
